@@ -3,7 +3,7 @@ const { DataTypes, Model } = require('sequelize');
 module.exports = class carModel extends Model {
   /**
    *
-   * @param {import('sequelize').Sequelize} sequelizeInstance
+   * @param sequelizeInstance
    */
   static setup(sequelizeInstance) {
     carModel.init({
