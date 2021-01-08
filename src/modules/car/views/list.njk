@@ -1,0 +1,85 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Brand
+                        </th>
+                        <th>
+                            Model
+                        </th>
+                        <th>
+                            Year
+                        </th>
+                        <th>
+                            Kms
+                        </th>
+                        <th>
+                            Color
+                        </th>
+                        <th>
+                            Air Conditioner
+                        </th>
+                        <th>
+                            Max passengers
+                        </th>
+                        <th>
+                            Automatic
+                        </th>
+                        <th>
+                            $/hour
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr data-id="{{ car.id }}">
+                        <td>
+                            {{ car.id }}
+                        </td>
+                        <td>
+                            {{ car.brand }}
+                        </td>
+                        <td>
+                            {{ car.model }}
+                        </td>
+                        <td>
+                            {{ car.year }}
+                        </td>
+                        <td>
+                            {{ car.kms }}
+                        </td>
+                        <td>
+                            {{ car.color }}
+                        </td>
+                        <td>
+                            {% if car.airConditioner %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ car.passengerMax }}
+                        </td>
+                        <td>
+                            {% if car.automatic %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ car.price }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}
