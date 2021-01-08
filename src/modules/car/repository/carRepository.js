@@ -6,7 +6,7 @@ module.exports = class CarRepository {
    *
    * @param {import("../model/carModel")}CarModel
    */
-  contructor(CarModel) {
+  constructor(CarModel) {
     this.CarModel = CarModel;
   }
 
@@ -14,8 +14,7 @@ module.exports = class CarRepository {
     const instance = this.CarModel.build(car, {
       isNewRecord: !car.id,
     });
-
-    return await instance.save();
+    await instance.save();
   }
 
   async delete(id) {
@@ -27,7 +26,8 @@ module.exports = class CarRepository {
   }
 
   async getAll() {
-    await this.CarModel.findAll().map((instance) => fromModelToEntity(instance));
+    const cars = await this.CarModel.findAll();
+    return cars.map((car) => fromModelToEntity(car));
   }
 
   async getById(id) {

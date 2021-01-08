@@ -1,6 +1,6 @@
 const carController = require('./controller/carController');
 const carService = require('./service/carService');
-const carRepository = require('./repository/carRespository');
+const carRepository = require('./repository/carRepository');
 const carModel = require('./model/carModel');
 
 function init(app, container) {
