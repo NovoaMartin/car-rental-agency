@@ -32,4 +32,23 @@ function fromModelToEntity({
   );
 }
 
-module.exports = fromModelToEntity;
+function fromDataToEntity({
+  id,
+  brand,
+  model,
+  year,
+  kms,
+  color,
+  airConditioner,
+  passengerMax,
+  automatic,
+  price,
+  img,
+  createdAt,
+  updatedAt,
+}) {
+  return new Car(id, brand, model, year, kms, color, airConditioner, passengerMax,
+    automatic, price, img, createdAt, updatedAt);
+}
+
+module.exports = { fromModelToEntity, fromDataToEntity };

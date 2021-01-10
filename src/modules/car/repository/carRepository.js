@@ -1,5 +1,5 @@
 const Car = require('../entity/Car');
-const fromModelToEntity = require('../mapper/carMapper');
+const { fromModelToEntity } = require('../mapper/carMapper');
 
 module.exports = class CarRepository {
   /**

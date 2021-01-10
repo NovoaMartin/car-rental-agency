@@ -1,5 +1,6 @@
-// const path = require('path');
+const path = require('path');
 // const fs = require('fs');
+const multer = require('multer');
 const { Sequelize } = require('sequelize');
 
 const {
@@ -9,6 +10,18 @@ const {
 const {
   carController, carService, carRepository, carModel,
 } = require('../modules/car/module');
+
+function configureMulter() {
+  const storage = multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, process.env.IMG_UPLOAD_DIR);
+    },
+    filename(req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
+  return multer({ storage });
+}
 
 function configureSequelize() {
   return new Sequelize({
@@ -20,6 +33,7 @@ function configureSequelize() {
 function addCommonDefinitions(container) {
   container.addDefinitions({
     sequelize: factory(configureSequelize),
+    Multer: factory(configureMulter),
   });
 }
 
@@ -29,7 +43,7 @@ function setupCarModule(container) {
 
 function addCarModuleDefinitions(container) {
   container.addDefinitions({
-    carController: object(carController).construct(get('carService')),
+    carController: object(carController).construct(get('carService'), get('Multer')),
     carService: object(carService).construct(get('carRepository')),
     carRepository: object(carRepository).construct(get('carModel')),
     carModel: factory(setupCarModule),

@@ -1,0 +1,89 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+<section class="section">
+    <form method="post" enctype="multipart/form-data" action="/car/save">
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <label class="label">Brand</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Brand" name="brand" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Model</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Model" name="model" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Year</label>
+                    <div class="control">
+                        <input class="input" type="number" placeholder="Year" name="year" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Kilometers</label>
+                    <div class="control">
+                        <input class="input" type="number" placeholder="Kilometers" name="kms" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Color</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Color" name="color" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Air conditioner</label>
+                    <label class="radio">
+                        <input type="radio" name="airConditioner" checked>
+                        Yes
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="airConditioner">
+                        No
+                    </label>
+                </div>
+                <div class="field">
+                    <label class="label">Max. passengers</label>
+                    <div class="control">
+                        <input class="input" type="number" placeholder="Max. passengers" name="passengerMax" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Automatic</label>
+                    <label class="radio">
+                        <input type="radio" name="automatic" checked>
+                        Yes
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="automatic">
+                        No
+                    </label>
+                </div>
+                <div class="field">
+                    <label class="label">Price per day</label>
+                    <div class="control">
+                        <input class="input" type="number" placeholder="$/day" name="price" required>
+                    </div>
+                </div>
+
+                <input type="submit" class="button is-link" value="Create">
+                <a href="/car/list">
+                    <button type="button" class="button is-light">Back</button>
+                </a>
+
+            </div>
+            <div class="column">
+                <img src="/img/default.png" alt="Car" id="carImg" height="300" width="400">
+                <input class="input" type="file" id="carImgBtn" name="img">
+            </div>
+        </div>
+    </form>
+
+</section>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/js/helper.js"></script>
+{% endblock %}
