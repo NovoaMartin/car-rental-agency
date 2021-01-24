@@ -34,6 +34,9 @@
                         <th>
                             $/hour
                         </th>
+                        <th>
+                            Delete
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +79,11 @@
                         </td>
                         <td>
                             {{ car.price }}
+                        </td>
+                        <td>
+                            <a href="/car/delete/{{ car.id }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}

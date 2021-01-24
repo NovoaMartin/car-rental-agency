@@ -35,6 +35,7 @@ module.exports = class CarController {
 
   async delete(req, res) {
     this.carService.delete(req.params.id);
+    res.redirect(`${this.ROUTE}/list`);
   }
 
   async save(req, res) {
