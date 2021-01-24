@@ -1,0 +1,86 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <div class="columns">
+        <div class="column">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Brand</strong>
+                        </td>
+                        <td>
+                            {{ car.brand }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Model</strong>
+                        </td>
+                        <td>
+                            {{ car.model }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Year</strong>
+                        </td>
+                        <td>
+                            {{ car.year }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Kilometers</strong>
+                        </td>
+                        <td>
+                            {{ car.kms }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Color</strong>
+                        </td>
+                        <td>
+                            {{ car.color }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Air conditioner</strong>
+                        </td>
+                        <td>
+                            {{ "Yes" if car.airConditioner else "No" }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Max passengers</strong>
+                        </td>
+                        <td>
+                            {{ car.passengerMax }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Automatic</strong>
+                        </td>
+                        <td>
+                            {{ "Yes" if car.automatic else "No" }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Price per hour</strong>
+                        </td>
+                        <td>
+                            {{ car.price }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="column">
+            <img src="{{ car.img if car.img else "/img/default.png" }}" alt="Car" id="carImg" height="300" width="400">
+        </div>
+    </div>
+{% endblock %}

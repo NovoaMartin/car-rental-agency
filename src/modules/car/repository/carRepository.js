@@ -18,7 +18,7 @@ module.exports = class CarRepository {
   }
 
   async delete(id) {
-    return await this.CarModel.destroy({
+    return this.CarModel.destroy({
       where: {
         id,
       },
@@ -31,7 +31,7 @@ module.exports = class CarRepository {
   }
 
   async getById(id) {
-    const instance = await this.CarModel.findById(id);
+    const instance = await this.CarModel.findByPk(id);
     return fromModelToEntity(instance);
   }
 };

@@ -14,6 +14,7 @@ module.exports = class CarController {
     app.get(`${this.ROUTE}/add`, this.add.bind(this));
     app.get(`${this.ROUTE}/list`, this.list.bind(this));
     app.get(`${this.ROUTE}/delete/:id`, this.delete.bind(this));
+    app.get(`${this.ROUTE}/view/:id`, this.view.bind(this));
     app.get('/testadd', this.testadd.bind(this));
     app.post(`${this.ROUTE}/save`, this.uploadMiddleware.single('img'), this.save.bind(this));
   }
@@ -49,6 +50,11 @@ module.exports = class CarController {
     } catch (e) {
     }
     res.redirect('/car/list');
+  }
+
+  async view(req, res) {
+    const car = await this.carService.get(req.params.id);
+    res.render(`${this.views}/view.njk`, { car });
   }
 
   async testadd(req, res) {

@@ -4,8 +4,7 @@ module.exports = class CarService {
   }
 
   async getAll() {
-    const cars = await this.carRepository.getAll();
-    return cars;
+    return await this.carRepository.getAll();
   }
 
   async save(car) {
@@ -18,6 +17,9 @@ module.exports = class CarService {
 
   async get(id) {
     const car = await this.carRepository.getById(id);
+    if (car.img) {
+      car.img = car.img.split('public')[1];
+    }
     return car;
   }
 };
