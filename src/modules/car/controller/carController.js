@@ -10,7 +10,7 @@ module.exports = class CarController {
   }
 
   configureRoutes(app) {
-    app.get('/', this.index.bind(this));
+    app.get('/', this.list.bind(this));
     app.get(`${this.ROUTE}/add`, this.add.bind(this));
     app.get(`${this.ROUTE}/list`, this.list.bind(this));
     app.get(`${this.ROUTE}/delete/:id`, this.delete.bind(this));
