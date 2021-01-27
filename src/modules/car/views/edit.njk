@@ -1,0 +1,96 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <section class="section">
+        <form method="post" enctype="multipart/form-data" action="/car/save">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Brand
+                                <input class="input" type="text" placeholder="Brand" name="brand" value="{{ car.brand }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Model
+                                <input class="input" type="text" placeholder="Model" name="model" value="{{ car.model }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Year
+                                <input class="input" type="number" placeholder="Year" name="year" value="{{ car.year }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Kilometers
+                                <input class="input" type="number" placeholder="Kilometers" name="kms" value="{{ car.kms }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Color
+                                <input class="input" type="text" placeholder="Color" name="color" value="{{ car.color }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Air conditioner</label>
+                        <label class="radio">
+                            <input type="radio" name="airConditioner" value="1" {{ "checked" if car.airConditioner }}>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="airConditioner" value="0" {{ "checked" if not car.airConditioner }}>
+                            No
+                        </label>
+                    </div>
+                    <div class="field">
+                        <label class="label">Max. passengers</label>
+                        <div class="control">
+                            <input class="input" type="number" placeholder="Max. passengers" name="passengerMax" value="{{ car.passengerMax }}" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Automatic</label>
+                        <label class="radio">
+                            <input type="radio" name="automatic" value="1" {{ "checked" if car.automatic}}>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="automatic" value="0" {{ "checked" if not car.automatic}}>
+                            No
+                        </label>
+                    </div>
+                    <div class="field">
+                        <label class="label">Price per day</label>
+                        <div class="control">
+                            <input class="input" type="number" placeholder="$/day" name="price" value="{{ car.price }}" required>
+                        </div>
+                    </div>
+                    <input class="is-hidden" name="id" value="{{ car.id }}">
+
+
+
+                </div>
+                <div class="column">
+                    <img src="{{ "/img/default.png" if not car.img else car.img }}" alt="Car" id="carImg" height="300" width="400">
+                    <input class="input" type="file" id="carImgBtn" name="img">
+                </div>
+            </div>
+            <input type="submit" class="button is-link" value="Save">
+            <a href="/car/list">
+                <button type="button" class="button is-light">Back</button>
+            </a>
+        </form>
+
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/js/helper.js"></script>
+{% endblock %}

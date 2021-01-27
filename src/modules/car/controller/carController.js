@@ -15,7 +15,7 @@ module.exports = class CarController {
     app.get(`${this.ROUTE}/list`, this.list.bind(this));
     app.get(`${this.ROUTE}/delete/:id`, this.delete.bind(this));
     app.get(`${this.ROUTE}/view/:id`, this.view.bind(this));
-    app.get('/testadd', this.testadd.bind(this));
+    app.get(`${this.ROUTE}/edit/:id`, this.edit.bind(this));
     app.post(`${this.ROUTE}/save`, this.uploadMiddleware.single('img'), this.save.bind(this));
   }
 
@@ -39,9 +39,18 @@ module.exports = class CarController {
     res.redirect(`${this.ROUTE}/list`);
   }
 
+  async edit(req, res) {
+    const car = await this.carService.get(req.params.id);
+    res.render(`${this.views}/edit.njk`, { car });
+  }
+
   async save(req, res) {
     try {
+      console.log(req.body);
       const car = fromDataToEntity(req.body);
+      console.log('\n\n');
+      console.log(car);
+      console.log('\n\n');
       if (req.file) {
         const { path } = req.file;
         car.img = path;
@@ -55,10 +64,5 @@ module.exports = class CarController {
   async view(req, res) {
     const car = await this.carService.get(req.params.id);
     res.render(`${this.views}/view.njk`, { car });
-  }
-
-  async testadd(req, res) {
-    const car = new Car(null, 'brand', 'model', 2000, 2, 'color', true, 5, true, 42, 'asd');
-    this.carService.carRepository.save(car);
   }
 };
