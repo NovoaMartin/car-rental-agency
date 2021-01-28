@@ -1,7 +1,7 @@
 {%  extends "views/layout/base.njk"%}
 {% block body %}
 <section class="section">
-    <form method="post" enctype="multipart/form-data" action="/user/save">
+    <form method="post" action="/user/save">
         <div class="columns">
             <div class="column">
                 <div class="field">
@@ -36,7 +36,7 @@
                     <div class="control">
                         <label class="label" for="nationality">Nationality</label>
                             <div class="select">
-                                <select name="nationality">
+                                <select id="nationality" name="nationality">
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
                                     <option value="Albania">Albania</option>

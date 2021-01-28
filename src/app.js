@@ -11,6 +11,9 @@ const port = process.env.PORT || 80;
 
 app.use(express.static('public'));
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 nunjucks.configure('src/modules', {
   autoescape: true,
   express: app,
