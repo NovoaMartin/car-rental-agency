@@ -42,7 +42,7 @@ module.exports = class UserController {
     } catch (e) {
       throw new Error();
     }
-    res.redirect('/car/list');
+    res.redirect('/user/list');
   }
 
   async view(req, res) {
