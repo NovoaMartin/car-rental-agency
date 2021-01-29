@@ -32,7 +32,7 @@ module.exports = class UserController {
 
   async edit(req, res) {
     const user = await this.userService.get(req.params.id);
-    res.render(`${this.views}/edit.njk`, { car: user });
+    res.render(`${this.views}/edit.njk`, { user });
   }
 
   async save(req, res) {
