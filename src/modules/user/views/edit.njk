@@ -1,0 +1,81 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <section class="section">
+        <form method="post" action="/user/save">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Name
+                                <input class="input" type="text" placeholder="Name" name="name" value="{{ user.name }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Surname
+                                <input class="input" type="text" placeholder="Surname" name="surname" value="{{ user.surname }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Document type
+                                <input class="input" type="text" placeholder="Document type" name="docType" value="{{ user.docType }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Document number
+                                <input class="input" type="number" placeholder="Document number" name="docNumber" value="{{ user.docNumber }}" required>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Country
+                                <input class="input" type="text" placeholder="Argentina" name="nationality" value="{{ user.nationality }}" required>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Address
+                                <input class="input" type="text" placeholder="Address" name="address" value="{{ user.address }}" required>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Phone
+                                <input class="input" type="number" placeholder="Phone" name="phone" value="{{ user.phone }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Email
+                                <input class="input" type="text" placeholder="email" name="email" value="{{ user.email }}" required>
+                            </label>
+                        </div>
+                    </div>
+
+                    <input class="is-hidden" name="id" value="{{ user.id }}">
+                </div>
+            </div>
+            <input type="submit" class="button is-link" value="Save">
+            <a href="/user/list">
+                <button type="button" class="button is-light">Back</button>
+            </a>
+        </form>
+
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/js/helper.js"></script>
+{% endblock %}
