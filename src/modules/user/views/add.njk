@@ -1,0 +1,73 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+<section class="section">
+    <form method="post" action="/user/save">
+        <div class="columns">
+            <div class="column">
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Name
+                            <input class="input" type="text" placeholder="Name" name="name" required>
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Surname
+                            <input class="input" type="text" placeholder="Surname" name="surname" required>
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Document type
+                            <input class="input" type="text" name="docType" value="DNI" required>
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Document number
+                         <input class="input" type="number" placeholder="DNI" name="docNumber" required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Country
+                            <input class="input" type="text" placeholder="Argentina" name="nationality" value="Argentina" required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Address
+                            <input class="input" type="text" placeholder="Address" name="address" required>
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Phone
+                            <input class="input" type="number" placeholder="Phone" name="phone" required>
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Email
+                            <input class="input" type="text" placeholder="email" name="email" required>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="button is-link" value="Create">
+        <a href="/user/list">
+            <button type="button" class="button is-light">Back</button>
+        </a>
+    </form>
+</section>
+{% endblock %}

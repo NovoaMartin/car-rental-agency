@@ -46,11 +46,7 @@ module.exports = class CarController {
 
   async save(req, res) {
     try {
-      console.log(req.body);
       const car = fromDataToEntity(req.body);
-      console.log('\n\n');
-      console.log(car);
-      console.log('\n\n');
       if (req.file) {
         const { path } = req.file;
         car.img = path;

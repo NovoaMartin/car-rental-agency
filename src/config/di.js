@@ -11,6 +11,10 @@ const {
   carController, carService, carRepository, carModel,
 } = require('../modules/car/module');
 
+const {
+  userController, userService, userRepository, userModel,
+} = require('../modules/user/module');
+
 function configureMulter() {
   const storage = multer.diskStorage({
     destination(req, file, cb) {
@@ -41,6 +45,10 @@ function setupCarModule(container) {
   return carModel.setup(container.get('sequelize'));
 }
 
+function setupUserModule(container) {
+  return userModel.setup(container.get('sequelize'));
+}
+
 function addCarModuleDefinitions(container) {
   container.addDefinitions({
     carController: object(carController).construct(get('carService'), get('Multer')),
@@ -50,9 +58,19 @@ function addCarModuleDefinitions(container) {
   });
 }
 
+function addUserModuleDefinitions(container) {
+  container.addDefinitions({
+    userController: object(userController).construct(get('userService')),
+    userService: object(userService).construct(get('userRepository')),
+    userRepository: object(userRepository).construct(get('userModel')),
+    userModel: factory(setupUserModule),
+  });
+}
+
 module.exports = function configureDI() {
   const container = new DIContainer();
   addCommonDefinitions(container);
   addCarModuleDefinitions(container);
+  addUserModuleDefinitions(container);
   return container;
 };

@@ -3,12 +3,16 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 
 const configureDi = require('./config/di.js');
-const { init } = require('./modules/car/module');
+const { init: initCarModule } = require('./modules/car/module');
+const { init: initUserModule } = require('./modules/user/module');
 
 const app = express();
 const port = process.env.PORT || 80;
 
 app.use(express.static('public'));
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 nunjucks.configure('src/modules', {
   autoescape: true,
@@ -17,6 +21,7 @@ nunjucks.configure('src/modules', {
 
 const container = configureDi();
 
-init(app, container);
+initCarModule(app, container);
+initUserModule(app, container);
 
 app.listen(port, () => { console.log(`app listening at port ${port}`); });

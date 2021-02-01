@@ -1,0 +1,83 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <div class="section">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Name</strong>
+                        </td>
+                        <td>
+                            {{ user.name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Surname</strong>
+                        </td>
+                        <td>
+                            {{ user.surname }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Document type</strong>
+                        </td>
+                        <td>
+                            {{ user.docType }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Document number</strong>
+                        </td>
+                        <td>
+                            {{ user.docNumber }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Nationality</strong>
+                        </td>
+                        <td>
+                            {{ user.nationality }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Address</strong>
+                        </td>
+                        <td>
+                            {{ user.address }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Phone</strong>
+                        </td>
+                        <td>
+                            {{ user.phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Email</strong>
+                        </td>
+                        <td>
+                            {{ user.email }}
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <a href="/user/list">
+                            <button type="button" class="button is-link">Back</button>
+                        </a>
+                        <a href="/user/delete/{{ user.id }}">
+                            <button type="button" class="button is-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+{% endblock %}
