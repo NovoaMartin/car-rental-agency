@@ -39,7 +39,7 @@ module.exports = class ReservationModel extends Model {
 
   static associations(CarModel, UserModel) {
     CarModel.hasMany(ReservationModel, { foreignKey: 'carId' });
-    ReservationModel.belongsTo(CarModel, { foreignKey: carId });
+    ReservationModel.belongsTo(CarModel, { foreignKey: 'carId' });
     UserModel.hasMany(ReservationModel, { foreignKey: 'userId' });
     ReservationModel.belongsTo(UserModel, { foreignKey: 'userId' });
 
