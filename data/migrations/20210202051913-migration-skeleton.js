@@ -6,7 +6,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     CarModel.setup(queryInterface.sequelize).sync({ forced: true });
     UserModel.setup(queryInterface.sequelize).sync({ forced: true });
-    ReservationModel.setup(queryInterface.sequelize).associations(CarModel, UserModel).sync({ forced: true });
+    ReservationModel.setup(queryInterface.sequelize).setupAssociations(CarModel, UserModel).sync({ forced: true });
   },
 
   down: async (queryInterface, Sequelize) => {

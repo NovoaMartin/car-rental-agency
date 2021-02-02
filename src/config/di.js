@@ -55,7 +55,7 @@ function setupUserModel(container) {
 
 function setupReservationModel(container) {
   const model = reservationModel.setup(container.get('sequelize'));
-  model.associations(carModel, userModel);
+  model.setupAssociations(carModel, userModel);
   return model;
 }
 

@@ -1,8 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
-const CarModel = require('../../car/model/carModel');
-const UserModel = require('../../user/model/userModel');
 
-module.exports = class ReservationModel extends Model {
+class ReservationModel extends Model {
   static setup(sequelizeInstance) {
     ReservationModel.init(
       {
@@ -37,7 +35,7 @@ module.exports = class ReservationModel extends Model {
     return ReservationModel;
   }
 
-  static associations(CarModel, UserModel) {
+  static setupAssociations(CarModel, UserModel) {
     CarModel.hasMany(ReservationModel, { foreignKey: 'carId' });
     ReservationModel.belongsTo(CarModel, { foreignKey: 'carId' });
     UserModel.hasMany(ReservationModel, { foreignKey: 'userId' });
@@ -45,4 +43,6 @@ module.exports = class ReservationModel extends Model {
 
     return ReservationModel;
   }
-};
+}
+
+module.exports = ReservationModel;
