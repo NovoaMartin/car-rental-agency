@@ -24,7 +24,7 @@
                                 <div class="select">
                                     <select>
                                         {% for car in cars %}
-                                        <option name="{{ car.id }}">{{ car.id + " " + car.brand + " " + car.model }}</option>
+                                        <option value="{{ car.id }}">{{ car.id + " " + car.brand + " " + car.model }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -37,7 +37,7 @@
                                 <div class="select">
                                     <select>
                                         {% for user in users %}
-                                            <option name="{{ user.id }}">{{ user.name + " " + user.surname }}</option>
+                                            <option value="{{ user.id }}">{{ user.name + " " + user.surname }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
