@@ -1,0 +1,55 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <section class="section">
+        <form method="post" action="/reservation/save">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Start date<br>
+                                <input class="input" type="date" name="startDate" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">End date <br>
+                                <input class="input" type="date" name="endDate" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Car<br>
+                                <div class="select">
+                                    <select>
+                                        {% for car in cars %}
+                                        <option name="{{ car.id }}">{{ car.id + " " + car.brand + " " + car.model }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">User<br>
+                                <div class="select">
+                                    <select>
+                                        {% for user in users %}
+                                            <option name="{{ user.id }}">{{ user.name + " " + user.surname }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="button is-link" value="Create">
+            <a href="/reservation/list">
+                <button type="button" class="button is-light">Back</button>
+            </a>
+        </form>
+    </section>
+{% endblock %}

@@ -79,7 +79,11 @@ function addUserModuleDefinitions(container) {
 
 function addReservationModuleDefinitions(container) {
   container.addDefinitions({
-    reservationController: object(reservationController).construct(get('reservationService')),
+    reservationController: object(reservationController).construct(
+      get('reservationService'),
+      get('carService'),
+      get('userService'),
+    ),
     reservationService: object(reservationService).construct(get('reservationRepository')),
     reservationRepository: object(reservationRepository).construct(get('reservationModel')),
     reservationModel: factory(setupReservationModel),
