@@ -3,6 +3,10 @@ module.exports = class ReservationService {
     this.reservationRepository = reservationRepository;
   }
 
+  async save(reservation, car, user) {
+    // TODO
+  }
+
   async getAll() {
     const instances = await this.reservationRepository.getAll();
     return instances;

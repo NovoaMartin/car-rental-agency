@@ -1,3 +1,5 @@
+const { fromDataToEntity } = require('../mapper/reservationMapper');
+
 module.exports = class ReservationController {
   constructor(reservationService, carService, userService) {
     this.reservationService = reservationService;
@@ -10,6 +12,17 @@ module.exports = class ReservationController {
   configureRoutes(app) {
     app.get(`${this.ROUTE}/list`, this.list.bind(this));
     app.get(`${this.ROUTE}/add`, this.add.bind(this));
+    app.post(`${this.ROUTE}/save`, this.save.bind(this));
+  }
+
+  async save(req, res) {
+    console.log(req.body);
+    /*
+    const reservation = fromDataToEntity(req.body);
+    const car = await this.carService.get(reservation.carId);
+    const user = await this.userService.get(reservation.userId);
+    await this.reservationService.save(reservation, car, user);
+    res.redirect('/reservation/list'); */
   }
 
   async add(req, res) {
