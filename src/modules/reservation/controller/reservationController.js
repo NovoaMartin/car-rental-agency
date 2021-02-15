@@ -12,6 +12,7 @@ module.exports = class ReservationController {
   configureRoutes(app) {
     app.get(`${this.ROUTE}/list`, this.list.bind(this));
     app.get(`${this.ROUTE}/add`, this.add.bind(this));
+    app.get(`${this.ROUTE}/delete/:id`, this.delete.bind(this));
     app.post(`${this.ROUTE}/save`, this.save.bind(this));
   }
 
@@ -26,6 +27,11 @@ module.exports = class ReservationController {
     const cars = await this.carService.getAll();
     const users = await this.userService.getAll();
     res.render(`${this.views}/add.njk`, { cars, users });
+  }
+
+  async delete(req, res) {
+    await this.reservationService.delete(req.params.id);
+    res.redirect('/reservation/list');
   }
 
   async list(req, res) {

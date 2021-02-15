@@ -1,6 +1,9 @@
 const { fromModelToEntity } = require('../mapper/reservationMapper');
 
 module.exports = class ReservationRepository {
+  /**
+   * @param {import("../model/reservationModel")} ReservationModel
+   */
   constructor(ReservationModel) {
     this.ReservationModel = ReservationModel;
   }
@@ -10,6 +13,14 @@ module.exports = class ReservationRepository {
       isNewRecord: !reservation.id,
     });
     await instance.save();
+  }
+
+  async delete(id) {
+    return this.ReservationModel.destroy({
+      where: {
+        id,
+      },
+    });
   }
 
   async getAll() {

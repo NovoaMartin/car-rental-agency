@@ -3,6 +3,10 @@ module.exports = class ReservationService {
     this.reservationRepository = reservationRepository;
   }
 
+  async delete(id) {
+    this.reservationRepository.delete(id);
+  }
+
   async save(reservation, car) {
     const reservationTime = (reservation.endDate.getTime() - reservation.startDate.getTime())
       / (1000 * 60 * 60);
