@@ -10,7 +10,16 @@ function fromDataToEntity({
   created_at,
   updated_at,
 }) {
-  return new Reservation(id, startDate, endDate, price, carId, userId, created_at, updated_at);
+  return new Reservation(
+    id,
+    startDate,
+    endDate,
+    Number(price),
+    Number(carId),
+    Number(userId),
+    created_at,
+    updated_at,
+  );
 }
 
 function fromModelToEntity({

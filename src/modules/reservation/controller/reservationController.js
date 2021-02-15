@@ -16,13 +16,10 @@ module.exports = class ReservationController {
   }
 
   async save(req, res) {
-    console.log(req.body);
-    /*
     const reservation = fromDataToEntity(req.body);
     const car = await this.carService.get(reservation.carId);
-    const user = await this.userService.get(reservation.userId);
-    await this.reservationService.save(reservation, car, user);
-    res.redirect('/reservation/list'); */
+    await this.reservationService.save(reservation, car);
+    res.redirect('/reservation/list');
   }
 
   async add(req, res) {
@@ -33,6 +30,7 @@ module.exports = class ReservationController {
 
   async list(req, res) {
     const reservations = await this.reservationService.getAll();
+    console.log(reservations);
     res.render(`${this.views}/list.njk`, { reservations });
   }
 };

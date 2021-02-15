@@ -40,19 +40,23 @@
                         {{ reservation.id }}
                     </td>
                     <td>
-                        {{ reservation.startDate }}
+                        {{ reservation.startDate.toLocaleDateString('en-GB') }}
                     </td>
                     <td>
-                        {{ reservation.endDate }}
+                        {{ reservation.endDate.toLocaleDateString('en-GB') }}
                     </td>
                     <td>
                         {{ reservation.price }}
                     </td>
                     <td>
-                        {{ reservation.carId }}
+                        <a href="/car/view/{{ reservation.carId }}">
+                            <i class="fas fa-car"></i>
+                        </a>
                     </td>
                     <td>
-                        {{ reservation.userId }}
+                        <a href="/user/view/{{ reservation.userId }}">
+                            <i class="fas fa-user"></i>
+                        </a>
                     </td>
                     <td>
                         <a href="/reservation/view/{{ reservation.id }}">

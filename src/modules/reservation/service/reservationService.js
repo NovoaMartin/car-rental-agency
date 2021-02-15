@@ -3,12 +3,14 @@ module.exports = class ReservationService {
     this.reservationRepository = reservationRepository;
   }
 
-  async save(reservation, car, user) {
-    // TODO
+  async save(reservation, car) {
+    const reservationTime = (reservation.endDate.getTime() - reservation.startDate.getTime())
+      / (1000 * 60 * 60);
+    reservation.price = reservationTime * car.price;
+    this.reservationRepository.save(reservation);
   }
 
   async getAll() {
-    const instances = await this.reservationRepository.getAll();
-    return instances;
+    return this.reservationRepository.getAll();
   }
 };
