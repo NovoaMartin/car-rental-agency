@@ -30,7 +30,6 @@ module.exports = class ReservationController {
 
   async list(req, res) {
     const reservations = await this.reservationService.getAll();
-    console.log(reservations);
     res.render(`${this.views}/list.njk`, { reservations });
   }
 };

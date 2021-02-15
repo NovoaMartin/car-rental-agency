@@ -40,10 +40,10 @@
                         {{ reservation.id }}
                     </td>
                     <td>
-                        {{ reservation.startDate.toLocaleDateString('en-GB') }}
+                        {{ reservation.startDate.toISOString().split("T")[0] }}
                     </td>
                     <td>
-                        {{ reservation.endDate.toLocaleDateString('en-GB') }}
+                        {{ reservation.endDate.toISOString().split("T")[0] }}
                     </td>
                     <td>
                         {{ reservation.price }}
