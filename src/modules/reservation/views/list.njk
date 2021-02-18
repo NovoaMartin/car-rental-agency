@@ -40,11 +40,14 @@
                 <th>
                     Delete
                 </th>
+                <th>
+                    Set as paid
+                </th>
             </tr>
             </thead>
             <tbody>
             {% for reservation in reservations %}
-                <tr data-id="{{ car.id }}">
+                <tr data-id="{{ reservation.id }}">
                     <td>
                         {{ reservation.id }}
                     </td>
@@ -94,6 +97,13 @@
                         <a href="/reservation/delete/{{ reservation.id }}">
                             <i class="fas fa-trash-alt"></i>
                         </a>
+                    </td>
+                    <td>
+                    {% if not reservation.paid %}
+                        <a title="Set as paid" href="/reservation/pay/{{ reservation.id }}">
+                            <i class="fas fa-dollar-sign"></i>
+                        </a>
+                    {% endif %}
                     </td>
                 </tr>
             {% endfor %}

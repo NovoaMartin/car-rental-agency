@@ -41,7 +41,6 @@ function fromModelToEntity({
   createdAt,
   updatedAt,
 }) {
-  console.log(arguments);
   return new Reservation(
     Number(id),
     startDate,

@@ -15,6 +15,7 @@ module.exports = class ReservationController {
     app.get(`${this.ROUTE}/edit/:id`, this.edit.bind(this));
     app.get(`${this.ROUTE}/delete/:id`, this.delete.bind(this));
     app.get(`${this.ROUTE}/view/:id`, this.view.bind(this));
+    app.get(`${this.ROUTE}/pay/:id`, this.setPaid.bind(this));
     app.post(`${this.ROUTE}/save`, this.save.bind(this));
   }
 
@@ -40,9 +41,15 @@ module.exports = class ReservationController {
     });
   }
 
+  async setPaid(req, res) {
+    const reservation = await this.reservationService.get(req.params.id);
+    reservation.paid = true;
+    await this.reservationService.save(reservation);
+    res.redirect('/reservation/list');
+  }
+
   async view(req, res) {
     const reservation = await this.reservationService.get(req.params.id);
-    console.log(reservation);
     res.render(`${this.views}/view.njk`, {
       reservation,
     });
