@@ -19,8 +19,20 @@ class ReservationModel extends Model {
           type: DataTypes.DATE,
           allowNull: false,
         },
-        price: {
+        totalPrice: {
           type: DataTypes.NUMBER,
+          allowNull: false,
+        },
+        pricePerDay: {
+          type: DataTypes.NUMBER,
+          allowNull: false,
+        },
+        paymentMethod: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        paid: {
+          type: DataTypes.BOOLEAN,
           allowNull: false,
         },
       },

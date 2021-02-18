@@ -10,7 +10,7 @@ module.exports = class ReservationService {
   async save(reservation, car) {
     const reservationTime = (reservation.endDate.getTime() - reservation.startDate.getTime())
       / (1000 * 60 * 60);
-    reservation.price = reservationTime * car.price;
+    reservation.price = reservationTime * car.totalPrice;
     this.reservationRepository.save(reservation);
   }
 
