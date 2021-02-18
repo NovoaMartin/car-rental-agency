@@ -15,6 +15,10 @@ module.exports = class ReservationService {
     this.reservationRepository.save(reservation);
   }
 
+  async get(id) {
+    return this.reservationRepository.get(id);
+  }
+
   async getAll() {
     return this.reservationRepository.getAll();
   }

@@ -1,0 +1,87 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <section class="section">
+        <form method="post" action="/reservation/save">
+            <div class="columns">
+                <div class="column">
+                    <input name="id" class="is-hidden" value="{{ reservation.id }}">
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Start date<br>
+                                <input class="input" type="date" name="startDate"
+                                       value="{{ reservation.startDate.toISOString().split("T")[0] }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">End date <br>
+                                <input class="input" type="date" name="endDate"
+                                       value="{{ reservation.endDate.toISOString().split("T")[0] }}" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">Car<br>
+                                <div class="select">
+                                    <select name="carId">
+                                        {% for car in cars %}
+                                            <option value="{{ car.id }}" {{ "checked" if car.id == reservation.carId }}>
+                                                {{ car.id + " " + car.brand + " " + car.model }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">User<br>
+                                <div class="select">
+                                    <select name="userId">
+                                        {% for user in users %}
+                                            <option value="{{ user.id }}" {{ "checked" if car.id == reservation.carId }}>
+                                                {{ user.id + " " + user.name + " " + user.surname }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Payment method</label>
+                        <label class="radio">
+                            <input type="radio" name="paymentMethod" value="Cash"
+                                    {{ "checked" if reservation.paymentMethod == "Cash" }}>
+                            Cash
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="paymentMethod" value="Credit Card"
+                                    {{ "checked" if reservation.paymentMethod == "Credit Card" }}>
+                            Credit card
+                        </label>
+                    </div>
+                    <div class="field">
+                        <label class="label">Paid</label>
+                        <label class="radio">
+                            <input type="radio" name="paid" value="true"
+                                    {{ "checked" if reservation.paid}}>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="paid" value="false" {{ "checked" if not reservation.paid }}>
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="button is-link" value="Create">
+            <a href="/reservation/list">
+                <button type="button" class="button is-light">Back</button>
+            </a>
+        </form>
+    </section>
+{% endblock %}

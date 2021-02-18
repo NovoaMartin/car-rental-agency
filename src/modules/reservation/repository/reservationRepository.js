@@ -23,6 +23,11 @@ module.exports = class ReservationRepository {
     });
   }
 
+  async get(id) {
+    const instance = await this.ReservationModel.findByPk(id);
+    return fromModelToEntity(instance);
+  }
+
   async getAll() {
     const instances = await this.ReservationModel.findAll();
     instances.map((instance) => fromModelToEntity(instance));
