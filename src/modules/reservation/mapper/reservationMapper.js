@@ -14,13 +14,13 @@ function fromDataToEntity({
   updated_at,
 }) {
   return new Reservation(
-    Number(id),
+    id ? Number(id) : null,
     startDate,
     endDate,
     Number(pricePerDay),
     Number(totalPrice),
     paymentMethod,
-    Boolean(paid),
+    paid === 'true',
     Number(carId),
     Number(userId),
     created_at,

@@ -14,7 +14,16 @@
                     End date
                 </th>
                 <th>
-                    Price
+                    Price per day
+                </th>
+                <th>
+                    Total price
+                </th>
+                <th>
+                    Payment method
+                </th>
+                <th>
+                    Paid
                 </th>
                 <th>
                     Car
@@ -46,7 +55,20 @@
                         {{ reservation.endDate.toISOString().split("T")[0] }}
                     </td>
                     <td>
-                        {{ reservation.price }}
+                        {{ reservation.pricePerDay }}
+                    </td>
+                    <td>
+                        {{ reservation.totalPrice }}
+                    </td>
+                    <td>
+                        {{ reservation.paymentMethod }}
+                    </td>
+                    <td>
+                        {% if reservation.paid %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
                     </td>
                     <td>
                         <a href="/car/view/{{ reservation.carId }}">
