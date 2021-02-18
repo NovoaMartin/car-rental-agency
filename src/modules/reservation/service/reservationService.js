@@ -8,10 +8,12 @@ module.exports = class ReservationService {
   }
 
   async save(reservation, car) {
-    const reservationTime = (reservation.endDate.getTime() - reservation.startDate.getTime())
+    if (!reservation.id) {
+      const reservationTime = (reservation.endDate.getTime() - reservation.startDate.getTime())
       / (1000 * 60 * 60 * 24);
-    reservation.pricePerDay = car.price;
-    reservation.totalPrice = reservationTime * car.price;
+      reservation.pricePerDay = car.price;
+      reservation.totalPrice = reservationTime * car.price;
+    }
     this.reservationRepository.save(reservation);
   }
 

@@ -2,6 +2,8 @@
 {% block body %}
     <section class="section">
         <form method="post" action="/reservation/save">
+            <input class="is-hidden" name="totalPrice" value="{{ reservation.totalPrice }}">
+            <input class="is-hidden" name="pricePerDay" value="{{ reservation.pricePerDay }}">
             <div class="columns">
                 <div class="column">
                     <input name="id" class="is-hidden" value="{{ reservation.id }}">
