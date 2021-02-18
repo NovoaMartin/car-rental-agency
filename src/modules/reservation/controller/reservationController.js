@@ -14,6 +14,7 @@ module.exports = class ReservationController {
     app.get(`${this.ROUTE}/add`, this.add.bind(this));
     app.get(`${this.ROUTE}/edit/:id`, this.edit.bind(this));
     app.get(`${this.ROUTE}/delete/:id`, this.delete.bind(this));
+    app.get(`${this.ROUTE}/view/:id`, this.view.bind(this));
     app.post(`${this.ROUTE}/save`, this.save.bind(this));
   }
 
@@ -33,13 +34,17 @@ module.exports = class ReservationController {
   async edit(req, res) {
     const reservation = await this.reservationService.get(req.params.id);
     const cars = await this.carService.getAll();
-    // const selectedCar = await this.carService.get(reservation.carId);
     const users = await this.userService.getAll();
-    // const selectedUser = await this.carService.get(reservation.userId);
-    console.log(reservation);
-
     res.render(`${this.views}/edit.njk`, {
       cars, users, reservation,
+    });
+  }
+
+  async view(req, res) {
+    const reservation = await this.reservationService.get(req.params.id);
+    console.log(reservation);
+    res.render(`${this.views}/view.njk`, {
+      reservation,
     });
   }
 

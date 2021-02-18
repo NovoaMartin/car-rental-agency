@@ -1,0 +1,111 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <div class="section">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>
+                    <strong>ID</strong>
+                </td>
+                <td>
+                    {{ reservation.id }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Start date</strong>
+                </td>
+                <td>
+                    {{ reservation.startDate.toISOString().split("T")[0] }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>End date</strong>
+                </td>
+                <td>
+                    {{ reservation.endDate.toISOString().split("T")[0] }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Price per day</strong>
+                </td>
+                <td>
+                    {{ reservation.pricePerDay }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Total price</strong>
+                </td>
+                <td>
+                    {{ reservation.totalPrice }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Payment method</strong>
+                </td>
+                <td>
+                    {{ reservation.paymentMethod }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Paid</strong>
+                </td>
+                <td>
+                    {{ "Yes" if reservation.paid else "No" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Car</strong>
+                </td>
+                <td>
+                    <a href="/car/view/{{ reservation.carId }}">
+                        <i class="fas fa-car"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>User</strong>
+                </td>
+                <td>
+                    <a href="/user/view/{{ reservation.userId }}">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Created</strong>
+                </td>
+                <td>
+                    {{ reservation.created_at.toISOString().split("T")[0] }}
+                </td>
+            </tr
+            <tr>
+                <td>
+                    <strong>Updated</strong>
+                </td>
+                <td>
+                    {{ reservation.updated_at.toISOString().split("T")[0] }}
+                </td>
+            </tr>>
+            <tr>
+                <td>
+                    <a href="/reservation/list">
+                        <button type="button" class="button is-link">Back</button>
+                    </a>
+                    <a href="/reservation/delete/{{ reservation.id }}">
+                        <button type="button" class="button is-danger">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

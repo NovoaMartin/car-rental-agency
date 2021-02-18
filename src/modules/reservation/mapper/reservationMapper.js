@@ -38,9 +38,10 @@ function fromModelToEntity({
   paid,
   carId,
   userId,
-  created_at,
-  updated_at,
+  createdAt,
+  updatedAt,
 }) {
+  console.log(arguments);
   return new Reservation(
     Number(id),
     startDate,
@@ -51,8 +52,8 @@ function fromModelToEntity({
     Boolean(paid),
     Number(carId),
     Number(userId),
-    created_at,
-    updated_at,
+    createdAt,
+    updatedAt,
   );
 }
 
