@@ -1,0 +1,113 @@
+{%  extends "views/layout/base.njk"%}
+{% block body %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Start date
+                </th>
+                <th>
+                    End date
+                </th>
+                <th>
+                    Price per day
+                </th>
+                <th>
+                    Total price
+                </th>
+                <th>
+                    Payment method
+                </th>
+                <th>
+                    Paid
+                </th>
+                <th>
+                    Car
+                </th>
+                <th>
+                    User
+                </th>
+                <th>
+                    Details
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+                <th>
+                    Set as paid
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr data-id="{{ reservation.id }}">
+                    <td>
+                        {{ reservation.id }}
+                    </td>
+                    <td>
+                        {{ reservation.startDate.toISOString().split("T")[0] }}
+                    </td>
+                    <td>
+                        {{ reservation.endDate.toISOString().split("T")[0] }}
+                    </td>
+                    <td>
+                        {{ reservation.pricePerDay }}
+                    </td>
+                    <td>
+                        {{ reservation.totalPrice }}
+                    </td>
+                    <td>
+                        {{ reservation.paymentMethod }}
+                    </td>
+                    <td>
+                        {% if reservation.paid %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/car/view/{{ reservation.carId }}">
+                            <i class="fas fa-car"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/user/view/{{ reservation.userId }}">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/reservation/view/{{ reservation.id }}">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/reservation/edit/{{ reservation.id }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/reservation/delete/{{ reservation.id }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                    <td>
+                    {% if not reservation.paid %}
+                        <a title="Set as paid" href="/reservation/pay/{{ reservation.id }}">
+                            <i class="fas fa-dollar-sign"></i>
+                        </a>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

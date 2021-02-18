@@ -15,6 +15,10 @@ const {
   userController, userService, userRepository, userModel,
 } = require('../modules/user/module');
 
+const {
+  reservationController, reservationService, reservationRepository, reservationModel,
+} = require('../modules/reservation/module');
+
 function configureMulter() {
   const storage = multer.diskStorage({
     destination(req, file, cb) {
@@ -41,12 +45,18 @@ function addCommonDefinitions(container) {
   });
 }
 
-function setupCarModule(container) {
+function setupCarModel(container) {
   return carModel.setup(container.get('sequelize'));
 }
 
-function setupUserModule(container) {
+function setupUserModel(container) {
   return userModel.setup(container.get('sequelize'));
+}
+
+function setupReservationModel(container) {
+  const model = reservationModel.setup(container.get('sequelize'));
+  model.setupAssociations(carModel, userModel);
+  return model;
 }
 
 function addCarModuleDefinitions(container) {
@@ -54,7 +64,7 @@ function addCarModuleDefinitions(container) {
     carController: object(carController).construct(get('carService'), get('Multer')),
     carService: object(carService).construct(get('carRepository')),
     carRepository: object(carRepository).construct(get('carModel')),
-    carModel: factory(setupCarModule),
+    carModel: factory(setupCarModel),
   });
 }
 
@@ -63,7 +73,20 @@ function addUserModuleDefinitions(container) {
     userController: object(userController).construct(get('userService')),
     userService: object(userService).construct(get('userRepository')),
     userRepository: object(userRepository).construct(get('userModel')),
-    userModel: factory(setupUserModule),
+    userModel: factory(setupUserModel),
+  });
+}
+
+function addReservationModuleDefinitions(container) {
+  container.addDefinitions({
+    reservationController: object(reservationController).construct(
+      get('reservationService'),
+      get('carService'),
+      get('userService'),
+    ),
+    reservationService: object(reservationService).construct(get('reservationRepository')),
+    reservationRepository: object(reservationRepository).construct(get('reservationModel')),
+    reservationModel: factory(setupReservationModel),
   });
 }
 
@@ -72,5 +95,6 @@ module.exports = function configureDI() {
   addCommonDefinitions(container);
   addCarModuleDefinitions(container);
   addUserModuleDefinitions(container);
+  addReservationModuleDefinitions(container);
   return container;
 };
