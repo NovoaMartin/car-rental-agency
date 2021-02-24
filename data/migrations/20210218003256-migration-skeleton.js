@@ -4,8 +4,8 @@ const ReservationModel = require('../../src/modules/reservation/model/reservatio
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    CarModel.setup(queryInterface.sequelize).sync({ forced: true });
-    UserModel.setup(queryInterface.sequelize).sync({ forced: true });
+    CarModel.setup(queryInterface.sequelize).sync({ force: true });
+    UserModel.setup(queryInterface.sequelize).sync({ force: true });
     ReservationModel.setup(queryInterface.sequelize).setupAssociations(CarModel, UserModel).sync({ forced: true });
   },
 

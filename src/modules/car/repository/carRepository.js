@@ -1,4 +1,3 @@
-const Car = require('../entity/Car');
 const { fromModelToEntity } = require('../mapper/carMapper');
 
 module.exports = class CarRepository {
@@ -15,14 +14,15 @@ module.exports = class CarRepository {
       isNewRecord: !car.id,
     });
     await instance.save();
+    return fromModelToEntity(instance);
   }
 
   async delete(id) {
-    return this.CarModel.destroy({
+    return Boolean(await this.CarModel.destroy({
       where: {
         id,
       },
-    });
+    }));
   }
 
   async getAll() {

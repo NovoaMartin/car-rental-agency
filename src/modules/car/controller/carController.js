@@ -1,4 +1,3 @@
-const Car = require('../entity/Car');
 const { fromDataToEntity } = require('../mapper/carMapper');
 
 module.exports = class CarController {
@@ -17,12 +16,6 @@ module.exports = class CarController {
     app.get(`${this.ROUTE}/view/:id`, this.view.bind(this));
     app.get(`${this.ROUTE}/edit/:id`, this.edit.bind(this));
     app.post(`${this.ROUTE}/save`, this.uploadMiddleware.single('img'), this.save.bind(this));
-  }
-
-  async index(req, res) {
-    res.render(`${this.views}/index.njk`, {
-      title: 'Test',
-    });
   }
 
   async add(req, res) {
