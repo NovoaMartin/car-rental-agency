@@ -13,15 +13,15 @@ module.exports = class UserRepository {
     const instance = this.UserModel.build(user, {
       isNewRecord: !user.id,
     });
-    await instance.save();
+    return fromModelToEntity(await instance.save());
   }
 
   async delete(id) {
-    return this.UserModel.destroy({
+    return Boolean(this.UserModel.destroy({
       where: {
         id,
       },
-    });
+    }));
   }
 
   async getAll() {

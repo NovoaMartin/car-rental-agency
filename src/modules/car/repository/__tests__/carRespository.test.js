@@ -43,7 +43,7 @@ describe('Testing car repository', () => {
     await carRepository.save(car);
     await carRepository.save(car);
 
-    const result = await carRepository.delete(1);
+    const result = await carRepository.delete(2);
     const remainingCars = await carRepository.getAll();
 
     expect(result).toEqual(true)
