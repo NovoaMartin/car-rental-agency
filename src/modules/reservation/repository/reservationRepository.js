@@ -12,15 +12,15 @@ module.exports = class ReservationRepository {
     const instance = this.ReservationModel.build(reservation, {
       isNewRecord: !reservation.id,
     });
-    await instance.save();
+    return fromModelToEntity(await instance.save());
   }
 
   async delete(id) {
-    return this.ReservationModel.destroy({
+    return Boolean(this.ReservationModel.destroy({
       where: {
         id,
       },
-    });
+    }));
   }
 
   async get(id) {
