@@ -114,9 +114,9 @@ describe('Testing reservation controller', () => {
         pricePerDay: "500",
         totalPrice: "1000",
         paymentMethod: 'cash',
-        paid: "1",
+        paid: "true",
         carId: "1",
-        userId:"2",
+        userId:"1",
       }
     }
 
