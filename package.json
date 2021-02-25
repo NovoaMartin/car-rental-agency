@@ -7,7 +7,8 @@
     "dev": "nodemon ./src/app.js -e js,njk",
     "setup": "npx sequelize-cli db:migrate",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "build": "npx sequelize-cli db:migrate"
   },
   "keywords": [],
   "author": "",
