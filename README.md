@@ -1,15 +1,15 @@
-#Car rental agency
+# Car rental agency
 
 _Web application for a car rental agency made_
 
-##Tech stack
+## Tech stack
 - Node.js
 - Expres.js
 - SQLite
 - Sequelize
 - Nunjucks
 
-##Installation
+## Installation
 
 Requirements:
 - Node.js
@@ -23,7 +23,7 @@ Setting up development environment:
 >npm run dev
 ```
 
-##C4 diagrams
+## C4 diagrams
 
 ![L1](docs/L1.png)
 
