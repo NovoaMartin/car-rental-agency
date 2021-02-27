@@ -1,6 +1,6 @@
 # Car rental agency
 
-_Web application for a car rental agency made_
+_Web application for a car rental agency_
 
 ## Tech stack
 - Node.js
