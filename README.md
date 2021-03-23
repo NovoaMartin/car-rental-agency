@@ -2,6 +2,9 @@
 
 _Web application for a car rental agency_
 
+## Demo
+https://car-rental-agency-ra.herokuapp.com/
+
 ## Tech stack
 - Node.js
 - Expres.js
