@@ -7,7 +7,7 @@ https://car-rental-agency-ra.herokuapp.com/
 
 ## Tech stack
 - Node.js
-- Expres.js
+- Express.js
 - SQLite
 - Sequelize
 - Nunjucks
