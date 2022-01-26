@@ -31,6 +31,7 @@
     "rsdi": "^1.0.9",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0",
+    "swagger-ui-express": "^4.3.0",
     "uuid": "^8.3.1"
   },
   "devDependencies": {

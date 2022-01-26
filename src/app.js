@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const nunjucks = require('nunjucks');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../swagger.json');
 const configureDi = require('./config/di.js');
 const { init: initCarModule } = require('./modules/car/module');
 const { init: initUserModule } = require('./modules/user/module');
@@ -19,6 +21,9 @@ nunjucks.configure('src/modules', {
   autoescape: true,
   express: app,
 });
+
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 const container = configureDi();
 

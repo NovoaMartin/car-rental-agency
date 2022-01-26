@@ -1,0 +1,34 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Car rental agency",
+    "description": "Web application for managing a car rental agency",
+    "version": "1.0.0"
+  },
+  "host": "localhost",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/car/delete/{id}": {
+      "get": {
+        "summary": "Deletes the car with the given id if it exists",
+        "description": "Deletes the car with the given id if it exists",
+        "parameters": [{
+          "name": "id",
+          "description": "id of the car to be deleted",
+          "type": "integer",
+          "in": "path",
+          "required": true
+        }],
+        "responses": {
+          "302": {
+            "description": "The car was deleted and the user redirected"
+          }
+        }
+      }
+    }
+
+
+  }
+}
