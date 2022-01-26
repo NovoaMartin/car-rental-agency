@@ -44,14 +44,14 @@ class ReservationModel extends Model {
       },
     );
 
-    return ReservationModel;
+    return this;
   }
 
   static setupAssociations(CarModel, UserModel) {
-    CarModel.hasMany(ReservationModel, { foreignKey: 'carId' });
-    ReservationModel.belongsTo(CarModel, { foreignKey: 'carId' });
-    UserModel.hasMany(ReservationModel, { foreignKey: 'userId' });
-    ReservationModel.belongsTo(UserModel, { foreignKey: 'userId' });
+    CarModel.hasMany(this, { foreignKey: 'carId', onDelete: 'CASCADE' });
+    this.belongsTo(CarModel, { foreignKey: 'carId' });
+    UserModel.hasMany(this, { foreignKey: 'userId', onDelete: 'CASCADE' });
+    this.belongsTo(UserModel, { foreignKey: 'userId' });
 
     return ReservationModel;
   }

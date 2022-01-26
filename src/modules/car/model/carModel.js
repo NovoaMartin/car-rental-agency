@@ -59,6 +59,7 @@ module.exports = class carModel extends Model {
       modelName: 'Car',
       tableName: 'cars',
       underscored: 'true',
+      onDelete: 'cascade',
     });
     return carModel;
   }

@@ -38,15 +38,13 @@ module.exports = class CarController {
   }
 
   async save(req, res) {
-    try {
-      const car = fromDataToEntity(req.body);
-      if (req.file) {
-        const { path } = req.file;
-        car.img = path;
-      }
-      await this.carService.save(car);
-    } catch (e) {
+    const car = fromDataToEntity(req.body);
+    if (req.file) {
+      const { path } = req.file;
+      car.img = path;
     }
+    await this.carService.save(car);
+
     res.redirect('/car/list');
   }
 
