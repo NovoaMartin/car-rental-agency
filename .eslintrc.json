@@ -11,7 +11,7 @@
     ],
     "plugins": ["jest"],
     "parserOptions": {
-        "ecmaVersion": 6
+        "ecmaVersion": 8
     },
     "rules": {
     }

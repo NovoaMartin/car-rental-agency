@@ -1,6 +1,6 @@
 const CarController = require('../carController');
 const createCar = require('./cars.fixture');
-const {fromDataToEntity} = require("../../mapper/carMapper")
+const { fromDataToEntity } = require('../../mapper/carMapper');
 
 const serviceMock = {
   get: jest.fn((id) => createCar(id)),
@@ -15,9 +15,9 @@ const uploadMock = {
 
 const reqMock = {
   params: {
-    id: 1
-  }
-}
+    id: 1,
+  },
+};
 
 const resMock = {
   render: jest.fn(),
@@ -45,73 +45,71 @@ describe('Testing car controller', () => {
     expect(uploadMock.single).toHaveBeenCalled();
   });
 
-  test('List function renders list.njk with all cars', async ()=>{
+  test('List function renders list.njk with all cars', async () => {
     const cars = serviceMock.getAll();
-    await mockController.list(reqMock, resMock)
+    await mockController.list(reqMock, resMock);
 
     expect(serviceMock.getAll).toHaveBeenCalledTimes(2);
     expect(resMock.render).toHaveBeenCalledTimes(1);
-    expect(resMock.render).toHaveBeenCalledWith("car/views/list.njk", {
-      cars
-    })
+    expect(resMock.render).toHaveBeenCalledWith('car/views/list.njk', {
+      cars,
+    });
   });
 
-  test("Add function renders add.njk", async()=>{
-    await mockController.add(reqMock,resMock);
+  test('Add function renders add.njk', async () => {
+    await mockController.add(reqMock, resMock);
     expect(resMock.render).toHaveBeenCalledTimes(1);
-    expect(resMock.render).toHaveBeenCalledWith("car/views/add.njk")
-  })
+    expect(resMock.render).toHaveBeenCalledWith('car/views/add.njk');
+  });
 
-  test("Delete function", async()=>{
-    await mockController.delete(reqMock,resMock);
+  test('Delete function', async () => {
+    await mockController.delete(reqMock, resMock);
 
     expect(serviceMock.delete).toHaveBeenCalledWith(1);
     expect(serviceMock.delete).toHaveBeenCalledTimes(1);
     expect(resMock.redirect).toHaveBeenCalledTimes(1);
-    expect(resMock.redirect).toHaveBeenCalledWith("/car/list")
-  })
+    expect(resMock.redirect).toHaveBeenCalledWith('/car/list');
+  });
 
-  test("Edit function renders edit.njk with car data", async()=>{
-    const car = serviceMock.get(1)
+  test('Edit function renders edit.njk with car data', async () => {
+    const car = serviceMock.get(1);
 
-    await mockController.edit(reqMock,resMock);
+    await mockController.edit(reqMock, resMock);
 
     expect(serviceMock.get).toHaveBeenCalledTimes(2);
-    expect(resMock.render).toHaveBeenCalledTimes(1)
-    expect(resMock.render).toHaveBeenCalledWith("car/views/edit.njk",{car})
-  })
+    expect(resMock.render).toHaveBeenCalledTimes(1);
+    expect(resMock.render).toHaveBeenCalledWith('car/views/edit.njk', { car });
+  });
 
-  test("Save function saves a car", async()=>{
+  test('Save function saves a car', async () => {
     const reqMockWithBody = {
       body: {
         id: 1,
         brand: 'Volkswagen',
         model: 'Gol',
-        year: "2020",
-        kms: "50000",
+        year: '2020',
+        kms: '50000',
         color: 'Red',
-        airConditioner: "1",
-        passengerMax: "5",
-        automatic:"1",
+        airConditioner: '1',
+        passengerMax: '5',
+        automatic: '1',
         price: '500',
       },
-      file: {path: "public\\img\\default.jpg"}
-    }
+      file: { path: 'public\\img\\default.jpg' },
+    };
 
-    await mockController.save(reqMockWithBody,resMock);
+    await mockController.save(reqMockWithBody, resMock);
     expect(serviceMock.save).toHaveBeenCalledTimes(1);
     expect(serviceMock.save).toHaveBeenCalledWith(fromDataToEntity(createCar(1)));
     expect(resMock.redirect).toHaveBeenCalledTimes(1);
-    expect(resMock.redirect).toHaveBeenCalledWith("/car/list")
+    expect(resMock.redirect).toHaveBeenCalledWith('/car/list');
+  });
 
-  })
-
-  test("View function renders view.njk with car details", async()=>{
+  test('View function renders view.njk with car details', async () => {
     const car = serviceMock.get(1);
-    await mockController.view(reqMock,resMock);
-    expect(serviceMock.get).toHaveBeenCalledTimes(2)
-    expect(resMock.render).toHaveBeenCalledTimes(1)
-    expect(resMock.render).toHaveBeenCalledWith("car/views/view.njk", {car})
-  })
-
+    await mockController.view(reqMock, resMock);
+    expect(serviceMock.get).toHaveBeenCalledTimes(2);
+    expect(resMock.render).toHaveBeenCalledTimes(1);
+    expect(resMock.render).toHaveBeenCalledWith('car/views/view.njk', { car });
+  });
 });

@@ -35,15 +35,14 @@ describe('Testing car service', () => {
   });
 
   test('get calls the repository', () => {
+    repositoryMock.getById.mockImplementationOnce((id) => createCar(id));
     serviceMock.get(1);
     expect(repositoryMock.getById).toHaveBeenCalledTimes(1);
     expect(repositoryMock.getById).toHaveBeenCalledWith(1);
   });
 
   test('get modifies the img property of the car', async () => {
-    repositoryMock.getById.mockImplementationOnce((id) => {
-      return createCar(id);
-    });
+    repositoryMock.getById.mockImplementationOnce((id) => createCar(id));
     const car = await serviceMock.get(1);
     const expectedCar = createCar(1);
     expectedCar.img = '\\img\\default.jpg';

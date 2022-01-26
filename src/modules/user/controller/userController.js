@@ -36,12 +36,9 @@ module.exports = class UserController {
   }
 
   async save(req, res) {
-    try {
-      const user = fromDataToEntity(req.body);
-      await this.userService.save(user);
-    } catch (e) {
-      throw new Error();
-    }
+    const user = fromDataToEntity(req.body);
+    await this.userService.save(user);
+
     res.redirect('/user/list');
   }
 
